@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [welcomeText, setWelcomeText] = useState('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
