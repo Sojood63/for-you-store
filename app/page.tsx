@@ -70,9 +70,60 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
     };
   }, []);
 
+  
   return (
+    
     <main className="relative min-h-screen bg-[#fdf8f4] flex items-center justify-center overflow-hidden font-sans select-none">
-      
+      {/* الـ Header الفخم لأعلى الصفحة - متناسق تماماً مع الجوال */}
+<div className="w-full
+max-w-7xl
+mx-auto
+px-4
+sm:px-6
+lg:px-8
+absolute top-[100px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center justify-center text-center px-4 select-none animate-fade-in">
+  {/* اسم المتجر */}
+ <h1   className="animate-shimmer
+text-3xl
+sm:text-4xl
+md:text-5xl
+lg:text-6xl
+font-serif
+font-bold
+tracking-[8px]
+text-[#c0365a]
+drop-shadow-lg
+">
+For You
+</h1>
+  <div className="
+w-full
+max-w-7xl
+mx-auto
+px-4
+sm:px-6
+lg:px-8
+h-[2px]
+bg-[#d98aa4]
+rounded-full
+opacity-70
+"/>
+<p className="
+text-sm
+md:text-base
+text-[#6d5b52]
+tracking-wide
+flex
+items-center
+gap-2
+">
+Every flower tells a story
+
+<span className="text-xl">🌸</span>
+
+</p>
+</div>
+
       {/* ستايل مخصص للأنيميشن لتأثير الاختفاء التلقائي */}
       <style jsx global>{`
         @keyframes hideWelcome {
@@ -88,7 +139,12 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
 
       {/* 1. شاشة اللودر الترحيبية من مكتبة Font Awesome مباشرة */}
       {loading && (
-        <div className="fixed inset-0 bg-[#fdf8f4] z-[9999] flex flex-col items-center justify-center transition-opacity duration-1000">
+        <div className=" w-full
+max-w-7xl
+mx-auto
+px-4
+sm:px-6
+lg:px-8fixed inset-0 bg-[#fdf8f4] z-[9999] flex flex-col items-center justify-center transition-opacity duration-1000">
           <div className="w-20 h-20 text-[#c0365a] flex items-center justify-center mb-4">
             {/* الأيقونة التي قمتِ بتعديلها لتوليب مخصصة */}
                    <i
@@ -96,7 +152,13 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
                style={{ animationDuration: "3s" }}
               ></i>
           </div>
-          <h1 className="text-3xl font-serif text-[#c0365a] tracking-widest animate-pulse">
+          <h1 className="text-3xl
+sm:text-4xl
+md:text-5xl
+lg:text-6xl
+ font-serif text-[#c0365a] tracking-widest hover:scale-105
+transition
+duration-500">
             For You
           </h1>
         </div>
@@ -105,7 +167,10 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
       {/* 2. صندوق الترحيب المنبثق على جهة اليسار (يظهر بعد انتهاء اللودر) */}
 {!loading && welcomeText && (
   <div 
-    className="fixed top-[40px] right-[20px] bg-white text-[#5a4a42] px-4 py-2.5 rounded-lg shadow-lg z-[1000] text-xs font-medium animate-welcome max-w-[220px]"
+    className="fixed top-[40px] right-[20px] bg-white/70
+backdrop-blur-md
+border
+border-white/30  text-[#5a4a42] px-4 py-2.5 rounded-lg shadow-lg z-[1000] text-xs font-medium animate-welcome max-w-[220px]"
     style={{ borderRight: '4px solid #c0365a' }}
     dir="rtl"
   >
@@ -117,8 +182,20 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
 )}
 
       {/* 3. الدوائر الملونة في الخلفية */}
-      <div className="absolute top-[-50px] left-[-80px] w-[300px] h-[300px] bg-[#f3c9d5] rounded-full blur-[60px] opacity-60 animate-bounce" style={{ animationDuration: '10s' }}></div>
-      <div className="absolute bottom-[-50px] right-[-50px] w-[250px] h-[250px] bg-[#fce4ec] rounded-full blur-[60px] opacity-60 animate-bounce" style={{ animationDuration: '8s' }}></div>
+      <div className="
+absolute
+top-1/2
+left-1/2
+-translate-x-1/2
+-translate-y-1/2
+w-[250px]
+h-[250px]
+bg-pink-100
+rounded-full
+blur-[90px]
+opacity-40
+"/>
+<div className="absolute bottom-[-50px] right-[-50px] w-[250px] h-[250px] bg-[#fce4ec] rounded-full blur-[60px] opacity-60 animate-bounce" style={{ animationDuration: '8s' }}></div>
 
       {/* 4. لوحة البتلات المتساقطة */}
       <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-10" />
