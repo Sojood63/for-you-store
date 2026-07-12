@@ -28,6 +28,12 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
     canvas.width = window.innerWidth; 
     canvas.height = window.innerHeight;
 
+    const resizeCanvas = () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
+
+window.addEventListener("resize", resizeCanvas);
     let petals: { x: number; y: number; r: number; speed: number; drift: number }[] = [];
     for (let i = 0; i < 50; i++) {
       petals.push({
@@ -65,6 +71,7 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
     animate();
 
     return () => {
+      window.removeEventListener("resize", resizeCanvas);
       clearTimeout(timer);
       cancelAnimationFrame(animationFrameId);
     };
@@ -75,53 +82,57 @@ else setWelcomeText('أهلاً بكِ في ليلتكِ المنتظرة، For 
     
     <main className="relative min-h-screen bg-[#fdf8f4] flex items-center justify-center overflow-hidden font-sans select-none">
       {/* الـ Header الفخم لأعلى الصفحة - متناسق تماماً مع الجوال */}
-<div className="w-full
-max-w-7xl
-mx-auto
-px-4
-sm:px-6
-lg:px-8
-absolute top-[100px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center justify-center text-center px-4 select-none animate-fade-in">
-  {/* اسم المتجر */}
- <h1   className="animate-shimmer
-text-3xl
-sm:text-4xl
-md:text-5xl
-lg:text-6xl
-font-serif
-font-bold
-tracking-[8px]
-text-[#c0365a]
-drop-shadow-lg
-">
-For You
-</h1>
-  <div className="
-w-full
-max-w-7xl
-mx-auto
-px-4
-sm:px-6
-lg:px-8
-h-[2px]
-bg-[#d98aa4]
-rounded-full
-opacity-70
-"/>
-<p className="
-text-sm
-md:text-base
-text-[#6d5b52]
-tracking-wide
-flex
-items-center
-gap-2
-">
-Every flower tells a story
+<div
+  className="
+    absolute
+    top-16
+    sm:top-20
+    md:top-24
+    left-1/2
+    -translate-x-1/2
+    z-20
+    flex
+    flex-col
+    items-center
+    justify-center
+    text-center
+    w-full
+    px-6
+    animate-fade-in
+  "
+>
+  <h1
+    className="
+      animate-shimmer
+      text-4xl
+      sm:text-5xl
+      md:text-6xl
+      font-serif
+      font-bold
+      tracking-[10px]
+      text-[#c0365a]
+      drop-shadow-[0_5px_20px_rgba(192,54,90,.25)]
+    "
+  >
+    For You
+  </h1>
 
-<span className="text-xl">🌸</span>
+  <div className="w-24 h-[2px] bg-[#d98aa4] rounded-full opacity-70 my-3"></div>
 
-</p>
+  <p
+    className="
+      text-sm
+      sm:text-base
+      text-[#6d5b52]
+      tracking-wide
+      flex
+      items-center
+      gap-2
+    "
+  >
+    Every flower tells a story
+    <span className="text-xl animate-pulse">🌸</span>
+  </p>
 </div>
 
       {/* ستايل مخصص للأنيميشن لتأثير الاختفاء التلقائي */}
@@ -138,44 +149,60 @@ Every flower tells a story
       `}</style>
 
       {/* 1. شاشة اللودر الترحيبية من مكتبة Font Awesome مباشرة */}
-      {loading && (
-        <div className=" w-full
-max-w-7xl
-mx-auto
-px-4
-sm:px-6
-lg:px-8fixed inset-0 bg-[#fdf8f4] z-[9999] flex flex-col items-center justify-center transition-opacity duration-1000">
-          <div className="w-20 h-20 text-[#c0365a] flex items-center justify-center mb-4">
-            {/* الأيقونة التي قمتِ بتعديلها لتوليب مخصصة */}
-                   <i
-                  className="fas fa-spa text-6xl animate-spin text-[#c0365a]"
-               style={{ animationDuration: "3s" }}
-              ></i>
-          </div>
-          <h1 className="text-3xl
-sm:text-4xl
-md:text-5xl
-lg:text-6xl
- font-serif text-[#c0365a] tracking-widest hover:scale-105
-transition
-duration-500">
-            For You
-          </h1>
-        </div>
-      )}
+    {loading && (
+  <div
+    className="
+      fixed
+      inset-0
+      bg-[#fdf8f4]
+      z-[9999]
+      flex
+      flex-col
+      items-center
+      justify-center
+      transition-opacity
+      duration-1000
+    "
+  >
+    <i className="fas fa-spa text-6xl text-[#c0365a] animate-float"></i>
+
+    <h1
+      className="
+        mt-5
+        animate-shimmer
+        text-5xl
+        font-serif
+        font-bold
+        tracking-[8px]
+      "
+    >
+      For You
+    </h1>
+  </div>
+)}
 
       {/* 2. صندوق الترحيب المنبثق على جهة اليسار (يظهر بعد انتهاء اللودر) */}
 {!loading && welcomeText && (
-  <div 
-    className="fixed top-[40px] right-[20px] bg-white/70
-backdrop-blur-md
-border
-border-white/30  text-[#5a4a42] px-4 py-2.5 rounded-lg shadow-lg z-[1000] text-xs font-medium animate-welcome max-w-[220px]"
-    style={{ borderRight: '4px solid #c0365a' }}
+  <div
     dir="rtl"
+    className="
+      fixed
+      top-6
+      right-5
+      z-[1000]
+      bg-white/70
+      backdrop-blur-md
+      border
+      border-white/40
+      shadow-2xl
+      rounded-2xl
+      px-5
+      py-3
+      animate-welcome
+    "
+    style={{ borderRight: "4px solid #c0365a" }}
   >
-     
-    <strong className="text-[#c0365a] block mt-0.5 font-semibold whitespace-normal">
+    <strong className="text-[#c0365a]">
       {welcomeText} 🌸
     </strong>
   </div>
